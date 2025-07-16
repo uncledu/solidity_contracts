@@ -10,3 +10,6 @@
 [submodule "ethereum/eip712_forge/lib/forge-std"]
 	path = ethereum/eip712_forge/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "ethereum/foundry_solidity/01_HelloWorld/lib/forge-std"]
+	path = ethereum/foundry_solidity/01_HelloWorld/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
