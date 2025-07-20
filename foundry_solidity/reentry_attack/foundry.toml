@@ -1,0 +1,14 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["dependencies"]
+solc = "0.8.30"
+evm_version = "Cancun"
+bytecode_hash = "none"
+cbor_metadata = false
+always_use_create_2_factory = true
+
+[dependencies]
+forge-std = "1.9.7"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
