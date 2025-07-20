@@ -34,3 +34,7 @@ forge script script/Victim.s.sol --fork-url http://localhost:8545 --broadcast --
 ```
 ```
 ```
+
+## 附录
+
+https://github.com/pcaversaccio/reentrancy-attacks 这个仓库记录了有史以来所有的重放攻击，可以进一步学习。
