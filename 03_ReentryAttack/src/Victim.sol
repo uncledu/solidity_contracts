@@ -10,6 +10,10 @@ pragma solidity ^0.8.0;
 contract Victim {
   mapping(address => uint256) public balances;
 
+  // constructor() {
+  //
+  // }
+
   function deposit() external payable {
     require(msg.value >= 1 ether, "cant deposit less than 1 ether");
     balances[msg.sender] += msg.value;

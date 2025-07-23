@@ -12,8 +12,8 @@ contract VictimScript is Script {
 
   function run() public{
     vm.startBroadcast();
-    victim = new Victim();
-    attacker = new Attacker(payable(address(victim)));
+    victim = new Victim{salt: "victim"}();
+    attacker = new Attacker{salt:"attacker"}(payable(address(victim)));
     vm.deal(address(victim), 10 ether);
     vm.deal(address(attacker), 2 ether);
     vm.stopBroadcast();
