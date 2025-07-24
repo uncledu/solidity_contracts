@@ -6,6 +6,10 @@ contract ContractA{
   event Log(uint amount, uint gas);
   uint public _a = 0; 
 
+  receive() external payable {
+
+  }
+
   function getBalance() view public returns(uint) {
     return address(this).balance;
   }
@@ -24,7 +28,7 @@ contract ContractA{
 
 
 contract CallContract {
-  function callSetA(address _contractAddress, uint _a) external payable {
+  function callSetA(address payable _contractAddress, uint _a) external payable {
     ContractA(_contractAddress).setA(_a);
     // ContractA(_contractAddress).setA{value: msg.value}(_a);
   }
@@ -34,12 +38,12 @@ contract CallContract {
     // return a;
   }
 
-  function callSetA2(address _contractAddress) external view returns(uint a) {
+  function callSetA2(address payable _contractAddress) external view returns(uint a) {
     ContractA contractA = ContractA(_contractAddress);
     a = contractA.getA();
   }
 
-  function setTransferETH(address _contractAddress, uint256 _value) external payable {
-    ContractA(_contractAddress).setA{value: _value}(0);
+  function setTransferETH(address payable _contractAddress, uint256 _value) external payable {
+    ContractA(_contractAddress).setA{value: msg.value}(_value);
   }
 }
