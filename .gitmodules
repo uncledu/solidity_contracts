@@ -16,3 +16,6 @@
 [submodule "ethereum/foundry_solidity/02_Voting/lib/forge-std"]
 	path = ethereum/foundry_solidity/02_Voting/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Solidity_Contracts/lib/forge-std"]
+	path = Solidity_Contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
