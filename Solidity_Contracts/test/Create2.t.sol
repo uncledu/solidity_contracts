@@ -2,39 +2,33 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
-import "../src/Call.sol";
+import "../src/Create2.sol";
 
 
-contract CallTest is Test {
-    ContractA public contractA;
-    Call public callContract;
+contract Create2Test is Test {
 
     function setUp() public {
-        contractA = new ContractA();
-        callContract = new Call();
-        vm.deal(address(contractA), 10 ether); // 给 ContractA 10 ether
-        vm.deal(address(callContract), 10 ether); // 给 ContractA 10 ether
     }
 
-    // 测试通过 Call 调用 ContractA 的 setA 函数
-    function testCallSetA() public {
-        uint a = 100;
-        uint256 x = 10;
-        callContract.callSetA{value: 0.1 ether}(payable(address(contractA)), a);
+    function testCreatePair() public {
+        PairFactory2 factory = new PairFactory2();
+        address tokenA = address(0x123);
+        address tokenB = address(0x456);
+        uint arg = 42;
+
+        // 计算预期地址
+        address expectedAddress = factory.calculateAddr(tokenA, tokenB, arg);
+        
+        // 创建Pair合约
+        address pairAddress = factory.createPair2(tokenA, tokenB, arg);
+        
+        // 验证创建的地址是否与预期一致
+        assertEq(pairAddress, expectedAddress, "Created pair address does not match expected address");
+        
+        // 验证Pair合约的初始化状态
+        Pair pair = Pair(pairAddress);
+        assertEq(pair.token0(), tokenA, "Token0 address mismatch");
+        assertEq(pair.token1(), tokenB, "Token1 address mismatch");
     }
 
-    function testCallGetA() public {
-        uint a = 100;
-        contractA.setA{value: 0.1 ether}(a);
-        uint result = callContract.callGetA(payable(address(contractA)));
-        assertEq(result, a, "callGetA should return the correct value");
-    }
-   
-    function testCallNonExistentFunction() public {
-        (bool success, bytes memory data) = address(callContract).call(
-            abi.encodeWithSignature("callNonExistentFunction(address)", address(contractA))
-        );
-        assertFalse(success, "Calling a non-existent function should fail");
-        assertEq(data, bytes(""), "Data returned should be empty");
-    }
 }

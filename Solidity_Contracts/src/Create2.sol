@@ -20,6 +20,7 @@ contract Pair{
 }
 
 contract PairFactory2{
+    event Log(bytes32 salt);
     mapping(address => mapping(address => address)) public getPair; // 存储代币对地址
     address[] public allPairs; // 存储所有Pair对地址
 
@@ -28,6 +29,7 @@ contract PairFactory2{
       // 用tokenA跟tokenB地址计算salt
       (address token0, address token1) = _tokenA < _tokenB ? (_tokenA, _tokenB) : (_tokenB, _tokenA); 
       bytes32 salt = keccak256(abi.encodePacked(token0, token1));
+      emit Log(salt);
       // 用CREATE2指令部署Pair合约
       Pair pair = new Pair{salt: salt}(arg);
       // 调用新合约的initialize方法
