@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "forge-std/console.sol";
 import {ERC721} from "@openzeppelin/token/ERC721/ERC721.sol";
 
 // ECDSA库
@@ -12,7 +13,8 @@ library ECDSA {
      * _signer为签名地址
      */
     function verify(bytes32 _msgHash, bytes memory _signature, address _signer) internal pure returns (bool) {
-        return recoverSigner(_msgHash, _signature) == _signer;
+        address a = recoverSigner(_msgHash, _signature);
+        return a == _signer;
     }
 
     // @dev 从_msgHash和签名_signature中恢复signer地址
