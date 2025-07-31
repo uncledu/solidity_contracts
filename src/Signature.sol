@@ -57,11 +57,19 @@ library ECDSA {
     }
 }
 
+struct WhiteUser {
+    address account;
+    uint256 tokenId;
+    bytes signature;
+}
+
 contract SignatureNFT is ERC721 {
     address public immutable signer; // 签名地址
     mapping(address => bool) public mintedAddress; // 记录已经mint的地址
 
+    event Hash(bytes32 msgHash);
     // 构造函数，初始化NFT合集的名称、代号、签名地址
+
     constructor(string memory _name, string memory _symbol, address _signer) ERC721(_name, _symbol) {
         signer = _signer;
     }
@@ -69,6 +77,7 @@ contract SignatureNFT is ERC721 {
     // 利用ECDSA验证签名并mint
     function mint(address _account, uint256 _tokenId, bytes memory _signature) external {
         bytes32 _msgHash = getMessageHash(_account, _tokenId); // 将_account和_tokenId打包消息
+        emit Hash(_msgHash); // 触发事件，记录消息哈希
         bytes32 _ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_msgHash); // 计算以太坊签名消息
         require(verify(_ethSignedMessageHash, _signature), "Invalid signature"); // ECDSA检验通过
         require(!mintedAddress[_account], "Already minted!"); // 地址没有mint过
