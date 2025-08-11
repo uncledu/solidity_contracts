@@ -1,11 +1,4 @@
 [[dependencies]]
-name = "@chainlink-contracts"
-version = "1.4.0"
-url = "https://soldeer-revisions.s3.amazonaws.com/@chainlink-contracts/1_4_0_10-05-2025_10:30:24_contracts.zip"
-checksum = "80db59ad185cb388ebe75f7f31dc2b21b44f712418895910f6353c8a834113ca"
-integrity = "014616b85155c065b9fa2349c3aa152d24114428f031be0474d4e8c9781c1578"
-
-[[dependencies]]
 name = "@openzeppelin-contracts"
 version = "5.4.0"
 url = "https://soldeer-revisions.s3.amazonaws.com/@openzeppelin-contracts/5_4_0_19-07-2025_08:59:41_contracts.zip"
@@ -20,8 +13,8 @@ checksum = "8d9e0a885fa8ee6429a4d344aeb6799119f6a94c7c4fe6f188df79b0dce294ba"
 integrity = "9e60fdba82bc374df80db7f2951faff6467b9091873004a3d314cf0c084b3c7d"
 
 [[dependencies]]
-name = "smartcontractkit-chainlink"
-version = "2.26.0"
-url = "https://soldeer-revisions.s3.amazonaws.com/smartcontractkit-chainlink/2_26_0_29-07-2025_08:26:17_smartcontractkit-chainlink-2.26.zip"
-checksum = "a9fdb433e4d271c6ebf872e3ef939274fb9c117cf72b9a373700066b25cb5018"
-integrity = "014b7fc0b23da6fc3d34143c5f7795e22d478b9855a7fabf5f4c7bf5fa73e940"
+name = "smartcontractkit-chainlink-evm"
+version = "0.3.0"
+url = "https://soldeer-revisions.s3.amazonaws.com/smartcontractkit-chainlink-evm/0_3_0_11-08-2025_13:28:31_smartcontractkit-chainlink-evm-0.3.zip"
+checksum = "f265f36d551c9eb3e1c91c16d02246871b5a66c5c9fe3945fdc44a468a9b71f4"
+integrity = "e28c962b7a97960f745f368335f7649e4b68d539b7c9c2e7a95f0c7d9e220592"
